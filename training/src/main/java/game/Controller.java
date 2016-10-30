@@ -22,11 +22,13 @@ public class Controller {
     	while(true){
 	    	try {
 				model.checkNumber(inputIntValueWithScanner(sc), unknownNumber);
-			} catch (WinnerException e) {
+			} catch (WinnerException ex) {
+				//it means that user guessed number
 				view.congratulationMessage();
 				break;
 			} catch (OutOfRangeException e) {
-				view.printMessage(e.getMessage());
+				//user entered number out of range
+				view.printErrMessage(e.getMessage());
 			} finally{
 				//show previous entered numbers
 		    	view.previousEnteredNumbers(model.getPreviousResult());

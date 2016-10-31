@@ -40,9 +40,9 @@ public class Controller {
     
  // Ability to enter number from user
     public int inputIntValueWithScanner(Scanner sc) {
-        view.printMessage(view.ENTER_NUMBER, model.getMin(), model.getMax());
+        view.printMessage(View.ENTER_NUMBER, model.getMin(), model.getMax());
         while( ! sc.hasNextInt()) {
-            view.printMessage(view.WRONG);
+            view.printMessage(View.WRONG);
             sc.next();
         }
         return sc.nextInt();

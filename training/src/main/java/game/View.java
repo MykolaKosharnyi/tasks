@@ -4,37 +4,43 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class View {
-	// Text's constants    
-    public final String ENTER_NUMBER = "Enter number";
-    public final String PREVIOUSLY_ENTERED = "Previously entered numbers:";
-    public final String WRONG = "Wrong, you must enter the number!";
-    public final String CONGRATULATION = "Congratulation! ";
-    public final String NUMBER_OF_PREVIOUS_ATTEMPTS = "Number of previous attempts: ";
+	// Text's constants 
+    public static final String ENTER_NUMBER = "Enter number";
+    public static final String PREVIOUSLY_ENTERED = "Previously entered numbers:";
+    public static final String WRONG = "Wrong, you must enter the number!";
+    public static final String CONGRATULATION = "Congratulation! ";
+    public static final String NUMBER_OF_PREVIOUS_ATTEMPTS = "Number of previous attempts: ";
     
     /**
-     * print message
-     * */
+     * Print message
+     * @param message - text that need to output
+     */
     public void printMessage(String message){
         System.out.println(message);
     }
-    
+     
     /**
-     * show error messages
-     * */    
+     * Show error messages
+     * @param message
+     */
     public void printErrMessage(String message){
         System.err.println(message);
     }
     
     /**
-     * print message to show range permissible numbers
-     * */
+     * Print message to show range permissible numbers
+     * @param message - text that need to output
+     * @param min - minimum number in range
+     * @param max - maximun number in range
+     */
     public void printMessage(String message, int min, int max){
         System.out.println(message + " in range" + " [" + min + "," + max + "]");
     }
 
     /**
-     * show previous entered numbers
-     * */
+     * Show previous entered numbers
+     * @param previousResult
+     */
     public void previousEnteredNumbers(HashMap<Integer, String> previousResult){
     	if(previousResult.size() > 0){
     		System.out.println(PREVIOUSLY_ENTERED);
@@ -51,8 +57,8 @@ public class View {
     }
     
     /**
-     * message with congratulation
-     * */
+     * Message with congratulation
+     */
     public void congratulationMessage(){
     	System.err.println(CONGRATULATION);
     	System.out.println();

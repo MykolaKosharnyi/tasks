@@ -5,20 +5,29 @@ import java.util.LinkedHashMap;
 import java.util.Random;
 
 public class Model {
-	//min and max defaul value in rand
-	public static final int RAND_MIN = 0;
-	public static final int RAND_MAX = 100;
+
+	/**
+	 * Constant. Warning if out of range.
+	 */
 	public static final String OUT_OF_RANGE = "Wrong! Out of range!";
 	
-	//new value of range
-	private int min = RAND_MIN;
-	private int max = RAND_MAX;
+	/**
+	 * minimum value in current range
+	 */
+	private int min = GlobalConstant.RAND_MIN;
 	
-	//previous result of user
+	/**
+	 * maximum value in current range
+	 */
+	private int max = GlobalConstant.RAND_MAX;
+
+	/**
+	 * previous result of user
+	 */
 	private HashMap<Integer, String> previousResult = new LinkedHashMap<Integer, String>();
 	
 	/**
-	 * method generate number which user will be guess
+	 * Method generate number which user will be guess
 	 * 
 	 * @param min and max - parameters from which we will create number
 	 * 
@@ -33,15 +42,21 @@ public class Model {
 	}
 	
 	/**
-	 * overload int rand(int min, int max) method
-	 * */
+	 * Overload int rand(int min, int max) method
+	 * @return number which user will be guess
+	 */
 	public int rand(){
-		return rand(RAND_MIN, RAND_MAX);
+		return rand(GlobalConstant.RAND_MIN, GlobalConstant.RAND_MAX);
 	}
 	
 	/**
-	 * heart of this program. In this method we check if user guessed number.
-	 * */
+	 * Heart of this program. In this method we check if user guessed number.
+	 * @param checkedNumber that user enter to check
+	 * @param unknownNumber number which user need to guess
+	 * @return if number that type user is less or bigger that number which he need to guess
+	 * @throws OutOfRangeException throws if user enter number out of range
+	 * @throws WinnerException throws if user enter right number
+	 */
 	public boolean checkNumber(int checkedNumber, int unknownNumber) throws OutOfRangeException,WinnerException{
 		//in case if number not from range
 		if( checkedNumber < min || checkedNumber > max) throw new OutOfRangeException(OUT_OF_RANGE + " [" + min + "," + max + "] \n");
@@ -63,8 +78,9 @@ public class Model {
 	}
 	
 	/**
-	 * save result of entered numbers
-	 * */
+	 * Save result of entered numbers
+	 * @param current - number which user entered
+	 */
 	private void addNewResult(int current){
 		previousResult.put(current, "range from " + min + " to " + max);
 	}

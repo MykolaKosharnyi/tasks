@@ -2,6 +2,7 @@ package game;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 /**
@@ -24,19 +25,24 @@ public class TestModel{
 		model = new Model();
 	}
 	
+	@Rule
+	public RepeatRule repeatRule = new RepeatRule();
+	
 	/**
-	 * Test creating numbers in range by default
+	 * Test creating numbers in range by default. Repeat test 1000 times to be sure.
 	 * */
 	@Test
+	@Repeat( 1000 )
 	public void testCreateRangeDefault(){
 		int result = model.rand();
 		Assert.assertTrue(model.getMin()< result && result<=model.getMax());
 	}
 	
 	/**
-	 * Test creating numbers in range
+	 * Test creating numbers in range. Repeat test 1000 times to be sure.
 	 * */
 	@Test
+	@Repeat( 1000 )
 	public void testCreateRange(){
 		int min = 5;
 		int max = 75;
@@ -51,9 +57,10 @@ public class TestModel{
 	public void testCheckNumberThowOutOfRangeException() {
 		model.setMin(45);
 		model.setMax(70);
+		model.makeNumberTest(50);
 		
 		try {
-			model.checkNumber(30, 50);
+			model.checkNumber(30);
 			Assert.fail("OutOfRangeException not thrown.");
 		} catch (OutOfRangeException e) {
 			Assert.assertTrue(true);
@@ -70,8 +77,9 @@ public class TestModel{
 	public void testCheckNumberWinnerException() throws OutOfRangeException, WinnerException {
 		model.setMin(45);
 		model.setMax(70);
-
-		model.checkNumber(50, 50);
+		model.makeNumberTest(50);
+		
+		model.checkNumber(50);
 	}
 	
 	/**
@@ -81,9 +89,10 @@ public class TestModel{
 	public void testCheckNumberIfWeInputSmolerNumber(){
 		model.setMin(30);
 		model.setMax(90);
+		model.makeNumberTest(50);
 		
 		try {
-			Assert.assertFalse(model.checkNumber(45, 50));
+			Assert.assertFalse(model.checkNumber(45));
 		} catch (OutOfRangeException | WinnerException e) {}
 	}
 	
@@ -94,9 +103,10 @@ public class TestModel{
 	public void testCheckNumberIfWeInputBiggerNumber(){
 		model.setMin(30);
 		model.setMax(90);
+		model.makeNumberTest(50);
 		
 		try {
-			Assert.assertTrue(model.checkNumber(60, 50));
+			Assert.assertTrue(model.checkNumber(60));
 		} catch (OutOfRangeException | WinnerException e) {}
 	}
 }

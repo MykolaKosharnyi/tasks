@@ -1,7 +1,7 @@
 package game;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class Model {
@@ -24,7 +24,12 @@ public class Model {
 	/**
 	 * previous result of user
 	 */
-	private HashMap<Integer, String> previousResult = new LinkedHashMap<Integer, String>();
+	private Map<Integer, String> previousResult = new LinkedHashMap<Integer, String>();
+	
+	/**
+	 * The number that we have to guess.
+	 */
+	private int unknownNumber;
 	
 	/**
 	 * Method generate number which user will be guess
@@ -50,6 +55,27 @@ public class Model {
 	}
 	
 	/**
+	 * Make number that we need to guess call method rand(int min, int max)
+	 */
+	public void makeNumber(int min, int max){
+		unknownNumber = rand(min, max);
+	}
+	
+	/**
+	 * Make number that we need to guess call method rand()
+	 */
+	public void makeNumber(){
+		unknownNumber = rand();
+	}
+	
+	/**
+	 * Make number that we need to guess. This method fot tests.
+	 */
+	public void makeNumberTest(int unknownNumber){
+		this.unknownNumber = unknownNumber;
+	}
+	
+	/**
 	 * Heart of this program. In this method we check if user guessed number.
 	 * @param checkedNumber that user enter to check
 	 * @param unknownNumber number which user need to guess
@@ -57,9 +83,9 @@ public class Model {
 	 * @throws OutOfRangeException throws if user enter number out of range
 	 * @throws WinnerException throws if user enter right number
 	 */
-	public boolean checkNumber(int checkedNumber, int unknownNumber) throws OutOfRangeException,WinnerException{
-		//in case if number not from range
-		if( checkedNumber < min || checkedNumber > max) throw new OutOfRangeException(OUT_OF_RANGE + " [" + min + "," + max + "] \n");
+	public boolean checkNumber(int checkedNumber) throws OutOfRangeException,WinnerException{
+		//in case if number not from range		
+		if( checkedNumber < min || checkedNumber > max) throw new OutOfRangeException(OUT_OF_RANGE + String.format(" [%-2d,%-3d] \n", min, max));
 		
 			//save previous entered result
 			addNewResult(checkedNumber);
@@ -82,7 +108,7 @@ public class Model {
 	 * @param current - number which user entered
 	 */
 	private void addNewResult(int current){
-		previousResult.put(current, "range from " + min + " to " + max);
+		previousResult.put(current, String.format("range from %-2d to %-3d", min, max));
 	}
 	
 	// getters and setters
@@ -99,10 +125,10 @@ public class Model {
 	public void setMax(int max) {
 		this.max = max;
 	}
-	public HashMap<Integer, String> getPreviousResult() {
+	public Map<Integer, String> getPreviousResult() {
 		return previousResult;
 	}
-	public void setPreviousResult(HashMap<Integer, String> previousResult) {
+	public void setPreviousResult(Map<Integer, String> previousResult) {
 		this.previousResult = previousResult;
 	}
 

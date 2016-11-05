@@ -43,7 +43,7 @@ public class Model {
 		// Initialize the generator
 		Random rnd = new Random(System.currentTimeMillis());
 		// We obtain a random number from min to max (inclusive)
-		return min + rnd.nextInt(max - min + 1);
+		return min + rnd.nextInt(max - min);
 	}
 	
 	/**
@@ -58,6 +58,8 @@ public class Model {
 	 * Make number that we need to guess call method rand(int min, int max)
 	 */
 	public void makeNumber(int min, int max){
+		setMin(min);
+		setMax(max);
 		unknownNumber = rand(min, max);
 	}
 	
@@ -85,7 +87,7 @@ public class Model {
 	 */
 	public boolean checkNumber(int checkedNumber) throws OutOfRangeException,WinnerException{
 		//in case if number not from range		
-		if( checkedNumber < min || checkedNumber > max) throw new OutOfRangeException(OUT_OF_RANGE + String.format(" [%-2d,%-3d] \n", min, max));
+		if( checkedNumber < min || checkedNumber >= max) throw new OutOfRangeException(OUT_OF_RANGE + String.format(" [%-2d,%-3d) \n", min, max));
 		
 			//save previous entered result
 			addNewResult(checkedNumber);

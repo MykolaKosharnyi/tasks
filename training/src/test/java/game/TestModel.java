@@ -25,6 +25,9 @@ public class TestModel{
 		model = new Model();
 	}
 	
+	/**
+	 * Create rule for repeated tests.
+	 */
 	@Rule
 	public RepeatRule repeatRule = new RepeatRule();
 	

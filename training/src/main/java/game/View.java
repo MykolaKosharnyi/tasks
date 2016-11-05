@@ -10,6 +10,12 @@ public class View {
     public static final String CONGRATULATION = "Congratulation! ";
     public static final String NUMBER_OF_PREVIOUS_ATTEMPTS = "Number of previous attempts: ";
     
+    public static final String ENTER_LOVER_RANGE = "Enter lover number of range: ";
+    public static final String ENTER_HIGHER_RANGE = "Enter higher number of range: ";
+    public static final String ERROT_SET_RANGE = "Lover number must be lover that higher, please set again ranges! \n";
+    public static final String EXIT = "Type 'exit' to quit this program.\n";
+    public static final String COMPLETE_PROGRAM = "\n The program is completed.";
+    
     /**
      * Print message
      * @param message - text that need to output
@@ -33,7 +39,7 @@ public class View {
      * @param max - maximun number in range
      */
     public void printMessage(String message, int min, int max){
-    	 System.out.println(String.format("%s in range [%d,%d]", message, min, max));
+    	 System.out.println(String.format("%s in range [%d,%d)", message, min, max));
     }
 
     /**

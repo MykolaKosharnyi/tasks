@@ -1,4 +1,4 @@
-package pattern;
+package patterns;
 
 public class AdapterApp {
 	public static void main(String[] args){
@@ -8,7 +8,7 @@ public class AdapterApp {
 		vectorGraphicsInterface.drawSquare();
 		
 		//2-й метод через композицию
-		vectorGraphicsInterface = new VectorAdapterFromRaster2();
+		vectorGraphicsInterface = new VectorAdapterFromRaster2(new RasterGraphics());
 		vectorGraphicsInterface.drawLine();
 		vectorGraphicsInterface.drawSquare();
 	}
@@ -44,7 +44,11 @@ public class AdapterApp {
 	}
 
 	class VectorAdapterFromRaster2 implements VectorGraphicsInterface{
-		RasterGraphics raster = new RasterGraphics();
+		private RasterGraphics raster;
+		
+		public VectorAdapterFromRaster2(RasterGraphics raster){
+			this.raster = raster;
+		}
 		
 		@Override
 		public void drawLine() {

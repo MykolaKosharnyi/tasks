@@ -136,10 +136,6 @@ public class CustomLinkedList<T> implements List<T> {
                 tempNode = tempNode.prevNode;
             }
         }
-        /*tempNode = firstNode;                         // Straight find - brute alternate
-        for(int i = 0; i < index; i++){
-            tempNode = tempNode.nextNode;
-        }*/
         return tempNode;
     }
 
@@ -242,7 +238,7 @@ public class CustomLinkedList<T> implements List<T> {
     }
 
     /**
-     * Mehod removes element from collection by index.
+     * Method removes element from collection by index.
      * @param index index of element to remove
      * @return removed element
      */
@@ -438,7 +434,7 @@ public class CustomLinkedList<T> implements List<T> {
             }
 
             /**
-             * Method modify en element in the current ierator position.
+             * Method modify an element in the current iterator position.
              * @param t new element
              */
             @Override
